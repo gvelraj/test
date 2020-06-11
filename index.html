@@ -32,13 +32,12 @@
     <div id="refresh" onclick="refreshAllDataSources()"></div>
     <script>
         tableau.extensions.initializeDialogAsync().then(() => {
-          ReactDOM.render(
-              React.createElement(TableauUI.Button, {
-                  kind: 'filledGreen'
-              }, 'Refresh All'),
-              document.getElementById('refresh')
-          );
+          test()
         })
+		
+		function test(){
+		    setInterval(function(){ refreshAllDataSources() }, 60000);
+		}
 
         function refreshAllDataSources() {
             let dataSourceFetchPromises = [];
@@ -60,6 +59,14 @@
                 });
             });
         }
+		
+		window.onload = function(){
+		  document.getElementById('btn').click();
+		  
+		var scriptTag = document.createElement("script");
+		scriptTag.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
+		document.getElementsByTagName("head")[0].appendChild(scriptTag);
+		}
     </script>
 </body>
 
